@@ -1,0 +1,124 @@
+﻿@model GeekLanches.Application.Dtos.Lanche.LancheDto
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<h1>Editar</h1>
+
+<h4>Ingrediente</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <span asp-validation-for="Id" class="text-danger"></span>
+                <input type="hidden" asp-for="Id" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Ativo" class="control-label"></label>
+                <input asp-for="Ativo" class="form-control-sm" />
+                <span asp-validation-for="Ativo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (Model.IngredienteId != null && Model.IngredienteId != Guid.Empty)
+{
+    <hr />
+    <form asp-action="EditIngrediente">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <span asp-validation-for="IngredienteId" class="text-danger"></span>
+            <input type="hidden" asp-for="IngredienteId" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="IngredienteNome" class="control-label"></label>
+            <input asp-for="IngredienteNome" class="form-control" />
+            <span asp-validation-for="IngredienteNome" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="IngredienteQuantidade" class="control-label"></label>
+            @*<input asp-for="Valor" class="form-control" />*@
+            @Html.EditorFor(model => model.IngredienteQuantidade, new { htmlAttributes = new { @class = "form-control" } })
+            <span asp-validation-for="IngredienteQuantidade" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Ok" class="btn btn-primary" />
+        </div>
+    </form>
+}
+<hr />
+
+<h3>Ingredientes</h3>
+<div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Nome
+                </th>
+                <th>
+                    Qtde
+                </th>
+                <th>
+                    Valor
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.LancheIngredientes)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ingrediente.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.QtdeIngredientes)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ingrediente.Valor)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("AlterarIngrediente", "Pedido", new { key = item.Ingrediente.Id.ToString() + ";" + Model.Id.ToString() })"
+                           title="Personalizar"
+                           class="btn btn-sm btn-warning">
+                            <i class="far fa-edit"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th></th>
+                <th>Total</th>
+                <th>R$ @Model.LancheIngredientes.Sum(l => (l.QtdeIngredientes * l.Ingrediente.Valor))</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+
+<div>
+    <a asp-action="Index">Voltar para a lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

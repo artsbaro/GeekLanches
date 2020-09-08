@@ -1,0 +1,30 @@
+﻿@model IEnumerable<GeekLanches.Application.Dtos.Lanche.LancheDto>
+
+@{
+    ViewData["Title"] = "Pedido";
+}
+
+<h1>Pedido</h1>
+
+<form asp-action="Index"
+      data-ajax-method="post"
+      data-ajax="true"
+      data-ajax-mode="replace"
+      data-ajax-update="#divListaIngredientes">
+    <div class="row form-group">
+        <div class="col-sm-3">
+            <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome" />
+        </div>
+        <div class="col-sm-1">
+            <input type="submit" value="Filtrar" class="btn btn-primary" />
+        </div>
+    </div>
+
+    @*<p>
+        <a asp-action="Create" class="btn btn-primary">Novo</a>
+    </p>*@
+
+    <partial name="_Lanches" model="Model" />
+
+</form>
+

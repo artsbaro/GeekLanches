@@ -1,0 +1,48 @@
+﻿
+@model IEnumerable<GeekLanches.Application.Dtos.Lanche.LancheDto>
+
+
+
+
+<div id="divListaIngredientes">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ativo)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ativo)
+                    </td>
+                    <td>
+
+                        <a href="@Url.Action("Save", "Pedido", new { id = item.Id })"
+                           title="Fazer pedido"
+                           class="btn btn-sm btn-warning">
+                            <i class="far fa-save"></i>
+                        </a>|
+
+                        <a href="@Url.Action("Edit", "Pedido", new { id = item.Id })"
+                           title="Personalizar pedido"
+                           class="btn btn-sm btn-info">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

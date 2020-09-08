@@ -1,0 +1,47 @@
+﻿@model IEnumerable<GeekLanches.Application.Dtos.Ingrediente.IngredienteDto>
+
+@{
+    ViewData["Title"] = "Ingredientes";
+}
+
+<h1>Ingredientes</h1>
+
+<form asp-action="Inflacao"
+      data-ajax-method="post"
+      data-ajax="true"
+      data-ajax-mode="replace"
+      data-ajax-update="#divListaIngredientes">
+    <div class="row form-group">
+        <div class="col-sm-3">
+            <div class="input-group">
+                <input type="text" name="percentual" id="percentual" maxlength="6" class="form-control" placeholder="000,00" data_tipo="moeda" />
+            </div>
+        </div>
+        <div class="col-sm-1">
+            <input type="submit" value="Aplicar Inflacao (%)" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+
+<form asp-action="Index"
+      data-ajax-method="post"
+      data-ajax="true"
+      data-ajax-mode="replace"
+      data-ajax-update="#divListaIngredientes">
+    <div class="row form-group">
+        <div class="col-sm-3">
+            <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome" />
+        </div>
+        <div class="col-sm-1">
+            <input type="submit" value="Filtrar" class="btn btn-primary" />
+        </div>
+    </div>
+
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Novo</a>
+    </p>
+
+    <partial name="_Ingredientes" model="Model" />
+
+</form>
+

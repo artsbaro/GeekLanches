@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>GeekLanches.DataBase</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{7d925591-dd5f-4631-80eb-e8f736f46da6}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>GeekLanches.DataBase</RootNamespace>
+    <AssemblyName>GeekLanches.DataBase</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="5.1 - Tables" />
+    <Folder Include="5.3 - StortedProcedures" />
+    <Folder Include="6.4 - Functions" />
+    <Folder Include="6.5 - Scripts" />
+    <Folder Include="5.3 - StortedProcedures\Receita" />
+    <Folder Include="5.3 - StortedProcedures\Categoria" />
+    <Folder Include="5.3 - StortedProcedures\Ingrediente" />
+    <Folder Include="5.3 - StortedProcedures\Lanche" />
+    <Folder Include="5.3 - StortedProcedures\LancheIngredientes" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="5.1 - Tables\tblReceitas.sql" />
+    <Build Include="5.3 - StortedProcedures\Receita\SProc_Receita_Insert.sql" />
+    <Build Include="5.3 - StortedProcedures\Receita\SProc_Receita_GetByFilter.sql" />
+    <Build Include="5.3 - StortedProcedures\Receita\SProc_Receita_Delete.sql" />
+    <Build Include="5.3 - StortedProcedures\Receita\SProc_Receita_GetById.sql" />
+    <Build Include="5.3 - StortedProcedures\Receita\SProc_Receita_Update.sql" />
+    <Build Include="5.3 - StortedProcedures\Categoria\Sproc_Categoria_Delete.sql" />
+    <Build Include="5.3 - StortedProcedures\Categoria\SProc_Categoria_GetByFilter.sql" />
+    <Build Include="5.3 - StortedProcedures\Categoria\SProc_Categoria_GetById.sql" />
+    <Build Include="5.3 - StortedProcedures\Categoria\SProc_Categoria_Insert.sql" />
+    <Build Include="5.3 - StortedProcedures\Categoria\SProc_Categoria_Update.sql" />
+    <Build Include="5.1 - Tables\tblCategorias.sql" />
+    <Build Include="5.3 - StortedProcedures\Receita\SProc_Receita_DeleteByCode.sql" />
+    <Build Include="5.3 - StortedProcedures\Receita\SProc_Receita_GetByCode.sql" />
+    <Build Include="5.3 - StortedProcedures\Categoria\SProc_Categoria_GetByCode.sql" />
+    <Build Include="5.3 - StortedProcedures\Categoria\Sproc_Categoria_DeleteByCode.sql" />
+    <Build Include="5.3 - StortedProcedures\Receita\SProc_Receita_Like.sql" />
+    <Build Include="5.3 - StortedProcedures\Receita\SProc_Receita_DisLike.sql" />
+    <Build Include="5.1 - Tables\Ingredientes.sql" />
+    <Build Include="5.3 - StortedProcedures\Ingrediente\SProc_Ingredientes_GetByFilter.sql" />
+    <Build Include="5.3 - StortedProcedures\Ingrediente\SProc_Ingrediente_GetById.sql" />
+    <Build Include="5.3 - StortedProcedures\Ingrediente\SProc_Ingrediente_Insert.sql" />
+    <Build Include="5.3 - StortedProcedures\Ingrediente\SProc_Ingrediente_Update.sql" />
+    <Build Include="5.3 - StortedProcedures\Ingrediente\SProc_Ingredientes_AplicaInflacao.sql" />
+    <Build Include="5.1 - Tables\Lanches.sql" />
+    <Build Include="5.3 - StortedProcedures\Lanche\SProc_Lanche_GetById.sql" />
+    <Build Include="5.3 - StortedProcedures\Lanche\SProc_Lanche_Insert.sql" />
+    <Build Include="5.3 - StortedProcedures\Lanche\SProc_Lanche_Update.sql" />
+    <Build Include="5.3 - StortedProcedures\Lanche\SProc_Lanches_GetByFilter.sql" />
+    <Build Include="5.1 - Tables\LancheIngredientes.sql" />
+    <Build Include="5.3 - StortedProcedures\LancheIngredientes\SProc_LancheIngredientes_GetById.sql" />
+    <Build Include="5.3 - StortedProcedures\LancheIngredientes\SProc_LancheIngredientes_Insert.sql" />
+    <Build Include="5.3 - StortedProcedures\LancheIngredientes\SProc_LancheIngredientes_Update.sql" />
+    <Build Include="5.3 - StortedProcedures\LancheIngredientes\SProc_LancheIngredientes_GetByIdLanche.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="6.5 - Scripts\InputData.sql" />
+  </ItemGroup>
+</Project>

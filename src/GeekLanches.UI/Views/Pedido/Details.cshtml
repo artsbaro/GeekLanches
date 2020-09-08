@@ -1,0 +1,89 @@
+﻿@model GeekLanches.Application.Dtos.Lanche.LancheDto
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<h1>Detalhes</h1>
+
+<div>
+    <h4>Lanche</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ativo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ativo)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DataCadastro)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DataCadastro)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DataUltimaAlteracao)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DataUltimaAlteracao)
+        </dd>
+
+    </dl>
+
+    <h3>Ingredientes</h3>
+    <div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Nome
+                    </th>
+                    <th>
+                        Qtde
+                    </th>
+                    <th>
+                        Valor
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.LancheIngredientes)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ingrediente.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.QtdeIngredientes)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ingrediente.Valor)
+                    </td>
+                </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th>Total</th>
+                    <th>R$ @Model.LancheIngredientes.Sum(l=> (l.QtdeIngredientes * l.Ingrediente.Valor))</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+</div>
+
+<div>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    <a asp-action="Index">Voltar para a lista</a>
+</div>
